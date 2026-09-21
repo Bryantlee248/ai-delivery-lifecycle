@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "CHANGE-ME",
+    "name": "CHANGE-ME",
+    "governance_level": "L0",
+    "lifecycle": "poc"
+  },
+  "state": {
+    "current_gate": "G0",
+    "active_work_items": [],
+    "next_work_item": null
+  },
+  "authority": {
+    "governance": "GOVERNANCE.md",
+    "roadmap": "ROADMAP.md",
+    "decisions": "DECISIONS.md",
+    "worklog": "WORKLOG.md",
+    "human_authorizer": "CHANGE-ME"
+  },
+  "roles": {
+    "architecture": "CHANGE-ME",
+    "delivery": [],
+    "verifier": null
+  },
+  "enforcement": {
+    "file_ownership": true
+  },
+  "effective": {
+    "decisions": [],
+    "work_packages": [],
+    "artifacts": []
+  },
+  "gates": [
+    { "id": "G0", "status": "planned", "approval": null },
+    { "id": "G1", "status": "planned", "approval": null },
+    { "id": "G2", "status": "planned", "approval": null },
+    { "id": "G3", "status": "planned", "approval": null },
+    { "id": "G4", "status": "planned", "approval": null }
+  ],
+  "superseded": []
+}
