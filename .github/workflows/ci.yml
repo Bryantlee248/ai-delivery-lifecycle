@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  package-health:
+    name: Package health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: SKILL.md frontmatter（name + description 必填）
+        run: |
+          node -e "
+            const fs = require('fs');
+            const m = fs.readFileSync('SKILL.md', 'utf8');
+            const fm = m.match(/^---\n([\s\S]*?)\n---/);
+            if (!fm) throw new Error('SKILL.md 缺少 frontmatter');
+            for (const k of ['name', 'description']) {
+              if (!new RegExp('^' + k + ':', 'm').test(fm[1])) throw new Error('frontmatter 缺少 ' + k);
+            }
+            console.log('SKILL.md frontmatter OK');
+          "
+
+      - name: install.sh 语法
+        run: bash -n install.sh
+
+      - name: scripts 语法
+        run: |
+          for f in scripts/*.mjs; do
+            node --check "$f" || exit 1
+          done
+          echo "scripts 语法 OK"
