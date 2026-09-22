@@ -1,6 +1,6 @@
 {
   "name": "ai-delivery-lifecycle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "统一分级软件交付生命周期 skill：打分选档（轻/中/重）+ 9 阶段 + 治理控制面 + 机器门禁。把「一个想法」变成「一个合格产品」。",
   "keywords": ["pi-package", "agent-skills", "skill", "delivery", "governance", "lifecycle", "sdlc"],
   "license": "MIT",

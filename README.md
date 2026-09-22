@@ -13,6 +13,8 @@
 ./install.sh pi        # 装到 pi
 ./install.sh claude    # 装到 Claude Code
 ./install.sh codex     # 装到 Codex
+./install.sh trae      # 装到 Trae
+./install.sh omp       # 装到 OMP（Oh My Pi，需 Bun 运行时）
 ./install.sh all       # 全装
 ```
 
@@ -36,6 +38,7 @@ node scripts/validate-governance.mjs [--ci]                # 重档额外
 
 ## 前提
 - 目标环境需有 **node**（脚本零依赖）；CI 模板为 GitHub Actions。
+- OMP（Oh My Pi）平台需 **Bun** 运行时（install.sh 只装 skill，不代装 Bun）。
 - 重档沿用 `enterprise-governance` 的已验证机制（含证据锚 v1.1）。
 
 ## 版本

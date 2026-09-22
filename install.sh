@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # install.sh — 把 ai-delivery-lifecycle 装到目标 AI 平台
-# 用法：./install.sh [pi|claude|codex|all]   （默认 pi）
+# 用法：./install.sh [pi|claude|codex|trae|omp|all]   （默认 pi）
 
 TARGET="${1:-pi}"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -25,13 +25,21 @@ case "$TARGET" in
   codex)
     install_to "${CODEX_HOME:-$HOME/.codex}/skills/$NAME"
     ;;
+  trae)
+    install_to "${TRAE_SKILLS_DIR:-$HOME/.trae/skills}/$NAME"
+    ;;
+  omp)
+    install_to "${OMP_SKILLS_DIR:-$HOME/.omp/agent/skills}/$NAME"
+    ;;
   all)
     install_to "$HOME/.pi/agent/skills/$NAME"
     install_to "$HOME/.claude/skills/$NAME"
     install_to "$HOME/.codex/skills/$NAME"
+    install_to "$HOME/.trae/skills/$NAME"
+    install_to "$HOME/.omp/agent/skills/$NAME"
     ;;
   *)
-    echo "未知目标：$TARGET（可选 pi|claude|codex|all）" >&2
+    echo "未知目标：$TARGET（可选 pi|claude|codex|trae|omp|all）" >&2
     exit 1
     ;;
 esac
