@@ -20,12 +20,14 @@
 
 ## 使用
 ```bash
-# 1. 脚手架（按档位）
+# 1. 脚手架（在 skill 目录运行）
 node scripts/create_project.mjs <项目> --tier light|standard|governed
+
 # 2. 选档后按 SKILL.md / references/lifecycle.md 推进 9 阶段
-# 3. 完成前验证（按档位）
-node tools/converge.mjs && node tools/verify.mjs          # 中/重档
-node scripts/validate-governance.mjs [--ci]                # 重档额外
+
+# 3. 完成前验证（在项目目录运行；中/重档自带 tools/，重档额外有 scripts/）
+node tools/converge.mjs && node tools/verify.mjs          # 中/重档（执行面 gate）
+node scripts/validate-governance.mjs [--ci]                # 重档额外（控制面校验器）
 ```
 
 ## 组成
