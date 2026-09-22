@@ -40,11 +40,15 @@ description: Unified tiered software delivery lifecycle — turn an idea into a 
 5. **没推 = 没发生**：小步 commit + push。
 
 ## 脚手架（按档位）
+> 在 skill 目录运行（`scripts/` 是 skill 自带脚本）：
+
 ```bash
 node scripts/create_project.mjs <目录> --tier light|standard|governed
 ```
 
 ## 完成前验证（按档位）
+> 在脚手架生成的项目目录内运行。中/重档项目自带 `tools/`（执行面 gate：converge/verify）；重档额外有 `scripts/validate-governance.mjs`（控制面校验器，受 CI 分权门保护，与执行面分开放置）：
+
 ```bash
 # 中/重档
 node tools/converge.mjs && node tools/verify.mjs
