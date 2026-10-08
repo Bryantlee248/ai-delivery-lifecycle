@@ -38,7 +38,7 @@
 journeys:
   - id: J1
     name: 示例—登记资产并入库
-    verify: "bash e2e/J1.sh"
+    verify: "node e2e/J1.mjs"
   # - id: J2
   #   name: ...
   #   verify: "bash e2e/J2.sh"

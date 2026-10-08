@@ -11,7 +11,7 @@
 //  - specs/tasks.md 里含：
 //      - [ ] T1 ... verify: "bash tools/check-t1.sh"
 //      - [x] T2 ...
-//  - 可选 DESIGN.md：若安装了 @google/design.md CLI 则跑 lint；否则标 SKIP。
+//  - 可选 DESIGN.md：优先运行项目内置 tools/design-lint.mjs，不联网下载工具。
 //  - 单一事实源：散文旅程标题（### Jn）与 yaml 块 id 必须一一对应（J0 主档除外）。
 //
 // 输出：写 specs/gaps.md；控制台打印汇总；未收敛 exit 1。
@@ -91,18 +91,11 @@ if (existsSync(TASKS)) {
 
 // --- (c) DESIGN 对账（可选） ---
 if (existsSync(DESIGN)) {
-  try {
-    const out = execSync('npx -y @google/design.md lint DESIGN.md', { cwd: ROOT, stdio: 'pipe', timeout: 180000 }).toString();
-    let parsed = null; try { parsed = JSON.parse(out); } catch {}
-    const errs = parsed?.summary?.errors ?? 0;
-    if (errs > 0) gap('design', 'DESIGN.md', `lint 有 ${errs} 个 error`);
-  } catch (e) {
-    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
-    if (/not found|ENOENT|Cannot find|404/i.test(out)) {
-      console.log('[converge] DESIGN lint: SKIP (未安装 @google/design.md)');
-    } else {
-      gap('design', 'DESIGN.md', 'lint 失败/有 error: ' + out.split(/\r?\n/).slice(-2).join(' | '));
-    }
+  const lint = resolve(ROOT, 'tools/design-lint.mjs');
+  if (!existsSync(lint)) console.log('[converge] DESIGN lint: SKIP (项目未提供 tools/design-lint.mjs)');
+  else {
+    const r = runVerify('node tools/design-lint.mjs');
+    if (!r.ok) gap('design', 'DESIGN.md', '设计检查失败: ' + (r.detail || ''));
   }
 } else {
   console.log('[converge] DESIGN.md 不存在：跳过设计对账（若项目有 UI，应补 DESIGN.md 以避免"丑"）');

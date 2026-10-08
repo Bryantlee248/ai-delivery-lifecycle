@@ -2,7 +2,7 @@
 // create_project.mjs — 统一脚手架（按档位生成骨架）
 // 用法：node create_project.mjs <项目目录> [--tier light|standard|governed] [--no-git]
 
-import { cpSync, mkdirSync, existsSync, copyFileSync, renameSync } from 'node:fs';
+import { cpSync, mkdirSync, existsSync, copyFileSync, renameSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -11,11 +11,12 @@ const SKILL = fileURLToPath(new URL('..', import.meta.url));
 const TPL = join(SKILL, 'templates');
 
 function parseArgs(argv) {
-  const a = { path: null, tier: 'standard', noGit: false };
+  const a = { path: null, tier: 'standard', noGit: false, force: false };
   for (let i = 0; i < argv.length; i++) {
     const x = argv[i];
     if (x === '--tier') a.tier = (argv[++i] || 'standard').toLowerCase();
     else if (x === '--no-git') a.noGit = true;
+    else if (x === '--force') a.force = true;
     else if (!x.startsWith('--') && !a.path) a.path = x;
   }
   if (!['light', 'standard', 'governed'].includes(a.tier)) {
@@ -33,11 +34,16 @@ function copyDir(src, dest) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.path) {
-    console.error('用法：node create_project.mjs <项目目录> [--tier light|standard|governed] [--no-git]');
+    console.error('用法：node create_project.mjs <项目目录> [--tier light|standard|governed] [--no-git] [--force]');
     process.exit(1);
   }
   const root = resolve(args.path);
   mkdirSync(root, { recursive: true });
+  const existing = readdirSync(root);
+  if (existing.length > 0 && !args.force) {
+    console.error('目标目录非空。为避免覆盖已有文件，请使用空目录或显式添加 --force。');
+    process.exit(1);
+  }
 
   if (args.tier === 'light') {
     copyDir(join(TPL, 'light'), root);

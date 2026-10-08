@@ -71,4 +71,4 @@ node scripts/validate-governance.mjs --ci       # CI 门（diff 归属 + 权威�
 
 ---
 
-_版本 v0.1_
+_版本 v0.1.3_

@@ -5,8 +5,8 @@
   "scripts": {
     "converge": "node tools/converge.mjs",
     "verify": "node tools/verify.mjs",
-    "test": "echo \"TODO: real tests\" && exit 0",
-    "build": "echo \"TODO: real build\" && exit 0",
-    "lint": "echo \"TODO: real lint\" && exit 0"
+    "test": "node tools/quality-gate.mjs test",
+    "build": "node tools/quality-gate.mjs build",
+    "lint": "node tools/quality-gate.mjs lint"
   }
 }
