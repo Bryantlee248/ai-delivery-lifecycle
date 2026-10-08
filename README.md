@@ -22,6 +22,7 @@
 ```bash
 # 1. 脚手架（在 skill 目录运行）
 node scripts/create_project.mjs <项目> --tier light|standard|governed
+# 目标目录必须为空；确认要覆盖已有内容时显式加 --force
 
 # 2. 选档后按 SKILL.md / references/lifecycle.md 推进 9 阶段
 
@@ -29,6 +30,8 @@ node scripts/create_project.mjs <项目> --tier light|standard|governed
 node tools/converge.mjs && node tools/verify.mjs          # 中/重档（执行面 gate）
 node scripts/validate-governance.mjs [--ci]                # 重档额外（控制面校验器）
 ```
+
+标准/治理模板中的 `test`、`build`、`lint` 和 E2E 默认会失败，必须替换成项目真实命令后才能通过质量门；`DESIGN.md` 由项目内置的 `tools/design-lint.mjs` 做离线结构检查，不会在收敛时动态下载 npm 包。
 
 ## 组成
 | 路径 | 内容 |
@@ -44,4 +47,4 @@ node scripts/validate-governance.mjs [--ci]                # 重档额外（控�
 - 重档沿用 `enterprise-governance` 的已验证机制（含证据锚 v1.1）。
 
 ## 版本
-v0.1（骨架落地）
+v0.1.3（质量门、跨平台验收和目录保护）

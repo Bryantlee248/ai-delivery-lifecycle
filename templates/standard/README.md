@@ -10,8 +10,9 @@ cd <new-project>
 # 1) 填 docs/adr/0001（形态+技术栈）与 AGENTS.md（定位）
 # 2) 填 specs/spec.md（用户旅程）与 specs/plan.md（技术方案，第 3 步填）
 # 3) 填 DESIGN.md（有 UI 才需要，但强烈建议）
-# 4) 把 e2e/J1.sh、e2e/integration.sh 替成真实 E2E
-# 5) 开发；每次交付前：
+# 4) 把 e2e/J1.mjs、e2e/integration.mjs 替成真实 E2E（`.sh`/`.ps1` 只是跨平台包装）
+# 5) 把 package.json 中的 test/build/lint 替成真实命令；默认质量门会失败，不会假绿
+# 6) 开发；每次交付前：
 node tools/converge.mjs     # 必须 CONVERGED(gaps=0)，否则算未完成
 node tools/verify.mjs       # 独立复核(只读产物，堵"自我美化")
 ```

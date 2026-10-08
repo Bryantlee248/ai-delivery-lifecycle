@@ -20,7 +20,14 @@ jobs:
         run: node tools/verify.mjs
   build-test:
     runs-on: ubuntu-latest
+    needs: [converge, independent-verify]
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
       - name: project build & test
-        run: echo "TODO: replace with real build/test (mvn/npm), then e2e"
+        run: |
+          npm run lint
+          npm test
+          npm run build
