@@ -47,4 +47,17 @@ node scripts/validate-governance.mjs [--ci]                # 重档额外（控�
 - 重档沿用 `enterprise-governance` 的已验证机制（含证据锚 v1.1）。
 
 ## 版本
-v0.1.3（质量门、跨平台验收和目录保护）
+v0.1.4（执行终态四态纪律 + 收件箱扫全铁律）
+
+## 发版规范（四处版本号必须同步）
+
+每次发版，以下**四处**版本号必须一起改，禁止只改其中一部分：
+
+| # | 位置 | 内容 |
+|---|---|---|
+| 1 | `SKILL.md` 末尾 | `_版本 vX.Y.Z_` |
+| 2 | `package.json` | `"version": "X.Y.Z"` |
+| 3 | `README.md` 的「版本」节 | `vX.Y.Z（本次改动摘要）` |
+| 4 | `git tag` | `vX.Y.Z`（指向合并后的 main） |
+
+发布流程：改代码 → 开 PR（main 受保护，不可直推）→ 合并 → 打 annotated tag → 各平台 `git pull` + `./install.sh` 同步。
