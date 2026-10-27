@@ -43,6 +43,21 @@ ROADMAP 工作项
   → 更新 PROJECT.json / ROADMAP / WORKLOG
 ```
 
+## 执行终态四态（执行层收尾纪律，任何档位适用）
+
+每次**有界执行**（一个 IWP、一个任务、一次评审、一次部署）收尾时，必须落在且仅落在以下四态之一，禁止用模糊描述收尾：
+
+| 终态 | 含义 | 必须附带 |
+|---|---|---|
+| `DONE` | 已授权有界工作完成 | 可观察证据（文件/提交/测试结果/回读） |
+| `BLOCKED` | 存在具体阻断条件 | 指明阻断条件是什么 |
+| `HUMAN_ACTION_REQUIRED` | 存在真实的人类专属/人工门 | 指明**最小精确**的人类动作 |
+| `AUTHORIZED_BOUNDARY_REACHED` | 继续会超范围/权限/评审验收门 | 指明卡在哪个边界 |
+
+- 无证据不得声明 `STARTED / DONE / VERIFIED`，改用 `NOT_EXECUTED / NO_EVIDENCE`。
+- `NO_HUMAN_ACTION_REQUIRED` 只表示「人当前无动作」，**不等于**项目/发布/UAT/商用结果已完成。
+- 四态是**执行态**，与阶段门结论 `GO / CONDITIONAL_GO / REDUCE_SCOPE / NO_GO`（门态）是两层，互不替代。
+
 ## 冲突优先级
 ```
 法律/组织政策 > 人类明确合法授权 > GOVERNANCE.md > PROJECT.json 当前有效引用

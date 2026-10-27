@@ -38,6 +38,8 @@ description: Unified tiered software delivery lifecycle — turn an idea into a 
 3. **机器门不绿 = 没完成**：中档 converge；重档 + validate + CI diff 归属 + 证据锚。
 4. **真人关不可替代**：UAT、风险拍板、生产批准必须人签字。
 5. **没推 = 没发生**：小步 commit + push。
+6. **执行必落四态**：每次有界执行收尾必须落在 `DONE / BLOCKED / HUMAN_ACTION_REQUIRED / AUTHORIZED_BOUNDARY_REACHED` 之一（定义见 `references/governance-model.md`），禁止用含糊的「做完了 / 卡住了」收尾。
+7. **收件箱扫全**：「查收件箱 / 读待办 / 收新消息」= 扫**全部**未处理项并分类，禁止只挑一条能处理的消息；检查点不确定时扩大有界检查范围并记录不确定性，不得静默漏掉。
 
 ## 脚手架（按档位）
 > 在 skill 目录运行（`scripts/` 是 skill 自带脚本）：
@@ -71,4 +73,4 @@ node scripts/validate-governance.mjs --ci       # CI 门（diff 归属 + 权威�
 
 ---
 
-_版本 v0.1.3_
+_版本 v0.1.4_
