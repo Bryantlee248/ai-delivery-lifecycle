@@ -69,8 +69,9 @@ node scripts/validate-governance.mjs --ci       # CI 门（diff 归属 + 权威�
   - `references/manifest-fields.md` — PROJECT.json 字段参考
 - UI 设计（重档涉及 Figma/组件库时）：见 `references/stage-2-spec.md` 的设计工具映射；Figma 接入读 `figma/mcp-server-guide`。
 - 项目类型专属（B/S·C/S·小程序·App·CLI 的技术栈/UI/验收/分发）：`references/project-types.md`。
+- 领域专家（安全/前端/UI/性能等专项方法，按需加载、不改治理分权）：`references/domain-experts.md`。
 - 会话切换：重档读 `PROJECT.json + GOVERNANCE.md + WORKLOG.md 尾部 + git log`；轻/中档读 `AGENTS.md + git log`。
 
 ---
 
-_版本 v0.1.4_
+_版本 v0.1.5_
