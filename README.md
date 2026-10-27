@@ -38,6 +38,7 @@ node scripts/validate-governance.mjs [--ci]                # 重档额外（控�
 |---|---|
 | `SKILL.md` | 入口：选档 + 9 阶段 + 铁律 |
 | `references/lifecycle.md` | 9 阶段 × 3 档矩阵（公共底座） |
+| `references/domain-experts.md` | 领域专家按需加载（正交于治理角色） |
 | `templates/light|standard|governed` | 三档模板 |
 | `scripts/` | create_project + converge/verify + init/validate-governance |
 
@@ -47,7 +48,7 @@ node scripts/validate-governance.mjs [--ci]                # 重档额外（控�
 - 重档沿用 `enterprise-governance` 的已验证机制（含证据锚 v1.1）。
 
 ## 版本
-v0.1.4（执行终态四态纪律 + 收件箱扫全铁律）
+v0.1.5（领域专家按需加载引用层）
 
 ## 发版规范（四处版本号必须同步）
 
